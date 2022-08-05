@@ -28,15 +28,14 @@ data = []
 
 
 for region in exclude_regions:
+    print ("Excluding region: " + region)
     aws_regions.remove(region)
 
 for region in aws_regions:
     
     boto3.client('ec2', region_name=region)
     print (account_id)
-    print("=============START==========================")
-    
-    print(region)
+    print("=============START for " + region + " ==========================")
     ec2 = boto3.client('ec2', region_name=region)
     response = ec2.describe_security_groups()
     for sg in response['SecurityGroups']:
